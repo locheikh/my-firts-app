@@ -56,6 +56,13 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
       description = <strong>C'est le plus rigoureux</strong>
     }
 
+    const liste = Object.keys(joueurs)
+      .map(joueur => (
+        <Membre 
+        nom = {joueurs[joueur].nom} 
+        classement = {joueurs[joueur].classement} />
+      ))
+
     return (
       <Fragment>
        <div className="App">
@@ -64,15 +71,9 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
          {this.handleChange} type='text'/>
          <h2>Mon second titre</h2>
          <h3>Auteur: {auteur.toUpperCase()}</h3>  
-         <Membre 
-          nom = {joueurs.joueur1.nom} 
-          classement = {joueurs.joueur1.classement} 
-          />
-         
-         <Membre 
-          nom = {joueurs.joueur2.nom}
-          classement = {joueurs.joueur2.classement} /> 
-         <Membre 
+
+          {liste} 
+         {/* <Membre 
           nom ={joueurs.joueur3.nom}
           classement = {joueurs.joueur3.classement}>
          
@@ -84,7 +85,7 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
            
            </button> 
          
-         </Membre> 
+         </Membre>  */}
          <Button
          vieillir= {() => {this.handleClick(2);}}
          />
