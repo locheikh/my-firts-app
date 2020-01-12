@@ -44,9 +44,18 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
     const isShow=!this.state.isShow;
     this.setState({isShow})
   }
+   
+  
   render(){
     const {titre, auteur}=this.props;
     const {joueurs, isShow}=this.state;
+
+    let description = null
+    if(isShow)
+    {
+      description = <strong>C'est le plus rigoureux</strong>
+    }
+
     return (
       <Fragment>
        <div className="App">
@@ -66,9 +75,8 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
          <Membre 
           nom ={joueurs.joueur3.nom}
           classement = {joueurs.joueur3.classement}>
-         {
-           isShow ? <strong>C'est le plus rigoureux</strong> : null   
-         } 
+         
+         {description} 
          <button onClick={this.handleShowDescription}>
          {
            isShow ? 'Cacher' : 'Montrer'  
