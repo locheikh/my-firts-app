@@ -21,7 +21,8 @@ const joueurs ={
 
 class App extends Component {  //à la base fonction ss render ni compenent, fragment  
   state={
-    joueurs
+    joueurs,
+    isShow: false
   }
 
   handleClick =(num) => {
@@ -39,9 +40,13 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
     //this.setState({joueurs})
   }
 
+  handleShowDescription = () =>{
+    const isShow=!this.state.isShow;
+    this.setState({isShow})
+  }
   render(){
     const {titre, auteur}=this.props;
-    const {joueurs}=this.state;
+    const {joueurs, isShow}=this.state;
     return (
       <Fragment>
        <div className="App">
@@ -60,10 +65,16 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
           classement = {joueurs.joueur2.classement} /> 
          <Membre 
           nom ={joueurs.joueur3.nom}
-          classement = {joueurs.joueur3.classement}  
-          >
-          
-         <strong>C'est le plus rigoureux</strong>  
+          classement = {joueurs.joueur3.classement}>
+         {
+           isShow ? <strong>C'est le plus rigoureux</strong> : null   
+         } 
+         <button onClick={this.handleShowDescription}>
+         {
+           isShow ? 'Cacher' : 'Montrer'  
+         } 
+           
+           </button> 
          
          </Membre> 
          <Button
