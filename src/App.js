@@ -29,15 +29,13 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
     const joueurs= {... this.state.joueurs};
     joueurs.joueur1.classement +=num;
     this.setState({joueurs})
-    //this.setState({joueurs})
   }
 
-  handleChange = event => {
-    const joueurs= {... this.state.joueurs};
+  handleChange = (event,joueur) => {
+    const joueurs= {... this.state.joueurs}
     const nom = event.target.value
-    joueurs.joueur1.nom= nom;
+    joueurs[joueur].nom = nom
     this.setState({joueurs})
-    //this.setState({joueurs})
   }
 
   cacherNom = id => {
@@ -50,7 +48,11 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
     const isShow=!this.state.isShow;
     this.setState({isShow})
   }
-   
+  
+  UpdateName = () =>{
+    const isShow=!this.state.isShow;
+    this.setState({isShow})
+  }
   
   render(){
     const {titre, auteur}=this.props;
@@ -65,6 +67,8 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
     const liste = Object.keys(joueurs)
       .map(joueur => (
         <Membre 
+        key={joueur}
+        handleChange={event => this.handleChange(event,joueur)}
         cacherNom= {()=>this.cacherNom(joueur)}
         nom = {joueurs[joueur].nom} 
         classement = {joueurs[joueur].classement} />
@@ -74,8 +78,6 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
       <Fragment>
        <div className="App">
          <h1>{titre}</h1>
-         <input value={joueurs.joueur1.nom} onChange=
-         {this.handleChange} type='text'/>
          <h2>Mon second titre</h2>
          <h3>Auteur: {auteur.toUpperCase()}</h3>  
 
