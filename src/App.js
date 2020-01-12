@@ -40,6 +40,12 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
     //this.setState({joueurs})
   }
 
+  cacherNom = id => {
+    const joueurs= {... this.state.joueurs};
+    joueurs[id].nom='X'
+    this.setState({joueurs})
+  }
+
   handleShowDescription = () =>{
     const isShow=!this.state.isShow;
     this.setState({isShow})
@@ -59,6 +65,7 @@ class App extends Component {  //à la base fonction ss render ni compenent, fra
     const liste = Object.keys(joueurs)
       .map(joueur => (
         <Membre 
+        cacherNom= {()=>this.cacherNom(joueur)}
         nom = {joueurs[joueur].nom} 
         classement = {joueurs[joueur].classement} />
       ))

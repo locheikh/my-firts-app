@@ -8,7 +8,7 @@ import React, {Fragment} from 'react'
  */  
 //component stateless
 
-const Membre = ({nom,classement, children}) => {
+const Membre = ({nom,classement, children, cacherNom}) => {
     //const name = props.nom;
     //console.log(props);
     return(
@@ -18,6 +18,7 @@ const Membre = ({nom,classement, children}) => {
                 color: classement < 2 ? 'white' : 'black'}}>Joueur: {nom}
             </h4>
             <h4>classement: {classement}</h4>
+            <button onClick= {cacherNom}>X</button>
             {children ? <p>{children}</p> : <p>Aucune description</p>}
         </Fragment>
         
